@@ -19,7 +19,20 @@ switch ($request) {
     break;
 
   case 'POST':
-    // code...
+    // escape!
+    $text = $_POST['text'];
+    $done = $_POST['done'];
+
+    if (!isset($text)) {
+      http_response_code(400);
+      die();
+    } else {
+      $sql  = "INSERT INTO todo (text, done) VALUES ('$text', $done)";
+      $result = mysqli_query($conn, $sql);
+      http_response_code(200);
+      die();
+    }
+
     break;
 
   case 'DELETE':
