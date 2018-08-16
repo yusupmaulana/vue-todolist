@@ -22,12 +22,13 @@ switch ($request) {
     // escape!
     $text = $_POST['text'];
     $done = $_POST['done'];
+    $date = $_POST['date'];
 
     if (!isset($text)) {
       http_response_code(400);
       die();
     } else {
-      $sql  = "INSERT INTO todo (text, done) VALUES ('$text', $done)";
+      $sql  = "INSERT INTO todo (text, done, id_date) VALUES ('$text', $done, '$date')";
       $result = mysqli_query($conn, $sql);
       http_response_code(200);
       die();
@@ -36,7 +37,11 @@ switch ($request) {
     break;
 
   case 'DELETE':
-    // code...
+    $id_date = $_GET['id'];
+    $sql  = "DELETE FROM todo WHERE id_date = '$id_date'";
+    $result = mysqli_query($conn, $sql);
+    http_response_code(200);
+    die();
     break;
 
   case 'PATCH':

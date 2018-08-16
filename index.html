@@ -16,7 +16,7 @@
       <li v-if="!todos.length">Belum ada tugas</li>
       <li v-for="todo in todos">
         <span v-bind:class="{'completed': (typeof todo.done === 'string') ?  parseInt(todo.done) : todo.done }"> {{ todo.text }} </span>
-        <button v-on:click="removeTodo($index)">X</button>
+        <button v-on:click="removeTodo($index, todo.id_date)">X</button>
         <button v-on:click="toggleC(todo)"> DONE </button>
       </li>
     </ul>
@@ -45,16 +45,22 @@
             method: 'POST',
             body  : {
               text : newItem,
-              done : false
+              done : false,
+              date : Date.now()
             },
           }).then((response) => {
             console.log(response)
           })
 
         },
-        removeTodo: function(index){
+        removeTodo: function(index, id_date){
           this.todos.splice(index, 1)
-
+          this.$http({
+            url    : 'api/index.php?id=' + id_date,
+            method : 'DELETE'
+          }).then((response) => {
+            //kalo request success mau ngapain
+          })
         },
         toggleC: function(todo){
           todo.done = !todo.done
