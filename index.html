@@ -63,7 +63,14 @@
           })
         },
         toggleC: function(todo){
+          (todo.done == 0) ? todo.done = false : true
           todo.done = !todo.done
+          this.$http({
+            url    : 'api/index.php?id=' + todo.id_date + '&done=' + todo.done,
+            method : 'PATCH'
+          }).then((response) => {
+            //kalo request success mau ngapain
+          })
         }
       },
       ready: function(){

@@ -45,7 +45,13 @@ switch ($request) {
     break;
 
   case 'PATCH':
-    // code...
+    $id_date = $_GET['id'];
+    $done = $_GET['done'];
+
+    $sql  = "UPDATE todo SET done=$done WHERE id_date = '$id_date'";
+    $result = mysqli_query($conn, $sql);
+    http_response_code(200);
+    die();
     break;
 
   default:
