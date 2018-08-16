@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 13, 2018 at 04:20 PM
+-- Generation Time: Aug 16, 2018 at 07:20 AM
 -- Server version: 5.7.23-0ubuntu0.16.04.1
 -- PHP Version: 7.2.8-1+ubuntu16.04.1+deb.sury.org+1
 
@@ -31,16 +31,18 @@ SET time_zone = "+00:00";
 CREATE TABLE `todo` (
   `id` int(11) NOT NULL,
   `text` varchar(100) NOT NULL,
-  `done` tinyint(1) NOT NULL
+  `done` tinyint(1) NOT NULL,
+  `id_date` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `todo`
 --
 
-INSERT INTO `todo` (`id`, `text`, `done`) VALUES
-(1, 'mau belajar', 1),
-(2, 'mau berkarya', 0);
+INSERT INTO `todo` (`id`, `text`, `done`, `id_date`) VALUES
+(1, 'mau belajar', 1, '5345123'),
+(2, 'mau berkarya', 0, '5647678'),
+(3, 'mau liburan bos', 0, '7867687');
 
 --
 -- Indexes for dumped tables
@@ -60,7 +62,7 @@ ALTER TABLE `todo`
 -- AUTO_INCREMENT for table `todo`
 --
 ALTER TABLE `todo`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
